@@ -25,6 +25,7 @@
 	app.controller('MainCtrl', ['$rootScope', 'DataSrvc', 'ENDPOINT', function($rootScope, DataSrvc, ENDPOINT) {
 
 		var vm = this;
+		vm.wideViewport = false;
 
 		// Get Albums
 		DataSrvc.getData(ENDPOINT.itunes)
@@ -37,6 +38,11 @@
 				console.log("Couldn't connect: " + error);
 			}
 		);
+
+		vm.goitunes = function(url) {
+			// go to itunes
+			window.location.href = url;
+		};
 	
 
 	}]); // MainCtrl
