@@ -31,11 +31,10 @@
 
 		// Monitor resizing of browser window
 		vm.wideViewport = false;
-		_determineInitialViewportWidth();
+		_determineViewportWidth();
 		$(window).resize(function() {
-		  _determineViewportWidth();
+		  _applyViewportWidth();
 		});
-
 
 		// Get Albums
 		DataSrvc.getData(ENDPOINT.itunes)
@@ -50,20 +49,19 @@
 		);
 
 		vm.goitunes = function(url) {
-			// go to itunes
 			window.location.href = url;
 		};
 	
-		function _determineInitialViewportWidth() {
+		function _applyViewportWidth() {
+			_determineViewportWidth();
+			$scope.$apply();
+		}
+		function _determineViewportWidth() {
 			if ( $(window).width() > BREAKPOINT.wide ) {
 				vm.wideViewport = true;
 			} else {
 				vm.wideViewport = false;
 			}
-		}
-		function _determineViewportWidth() {
-			_determineInitialViewportWidth();
-			$scope.$apply();
 		}
 
 	}]); // MainCtrl
