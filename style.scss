@@ -1,17 +1,43 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
-
-// narrow rules are default (mobile-first)
+// DEFAULT WIDTH (narrow)
 body {
 	background-color: black;
 	font-family: 'Titillium Web', sans-serif;
+	font-size: 1.1em;
 }
 .collection {
 	display: inline-flex;
 }
 
+.album-open {
+	padding: 1em;
+	color: white;
+}
+.album-closed {
+	display: none;
+}
+.artist {
+	color: #82bc00;
+}
+.title {
+	line-height: 1.1;
+	font-weight: normal;
+	color: #DAA520;
+}
+.url {
+	display: block;
+	width: 100%;
+	margin: .5em auto 0 auto;
+	text-align: center;
+	&:hover {
+		text-decoration: none;
+		color: #aaa;
+	}
+}
 
-// wider than 510px (where design breaks down)
+
+// WIDE WIDTH starts beyond 510px
 @media only screen and (min-width: 510px) {
 	/*! css-flip: https://davidwalsh.name/css-flip */
 	.flip-container {
@@ -55,25 +81,14 @@ body {
 		color: white;
 		background-color: #333;
 		padding: 1em;
-		font-size: 1em;
+
 		.rating {
 			float: right;
 			font-size: 3em;
 		}
 		.info {
 			margin-bottom: 1em;
-			.artist {
-				font-size: 1.1em;
-				color: #82bc00;
-			}
-			.title {
-				font-size: 1.2em;
-				line-height: 1.1;
-				font-weight: normal;
-				color: #DAA520;
-			}
 		}
 	}
-
 }
 

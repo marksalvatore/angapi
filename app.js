@@ -27,7 +27,12 @@
 	// MainCtrl
 	app.controller('MainCtrl', ['$scope', 'DataSrvc', 'ENDPOINT', 'BREAKPOINT', function($scope, DataSrvc, ENDPOINT, BREAKPOINT) {
 
-		var vm = this;
+		var vm = this; // view model
+		vm.albumInfoOPEN = false; // only for narrow viewport
+		vm.artist = null;
+		vm.title = null;
+		vm.price = null;
+		vm.url = null;
 
 		// Monitor resizing of browser window
 		vm.wideViewport = false;
@@ -40,8 +45,7 @@
 		DataSrvc.getData(ENDPOINT.itunes)
 			.then(function(resp){
 				vm.albums = resp.data.feed.entry;
-				console.log("Here are the albums:");
-				console.log(vm.albums);
+				console.log("Received album info");
 			},
 			function(error){
 				console.log("Couldn't connect: " + error);
@@ -51,11 +55,21 @@
 		vm.goitunes = function(url) {
 			window.location.href = url;
 		};
+
+		vm.toggleAlbumInfo = function(id) {
+			vm.albumInfoOPEN ? vm.albumInfoOPEN = false : vm.albumInfoOPEN = true;
+			vm.artist = $('#' + id + ' .artist').text();
+			vm.title = $('#' + id + ' .title').text();
+			vm.price = $('#' + id + ' .price').text();
+			vm.url = $('#' + id + ' .url').attr('href');
+			$("html, body").animate({ scrollTop: 0 }, "slow");
+		};
 	
 		function _applyViewportWidth() {
 			_determineViewportWidth();
 			$scope.$apply();
 		}
+		
 		function _determineViewportWidth() {
 			if ( $(window).width() > BREAKPOINT.wide ) {
 				vm.wideViewport = true;

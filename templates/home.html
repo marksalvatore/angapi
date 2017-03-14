@@ -1,11 +1,21 @@
-<!-- ALBUMS -->
+<!-- album info region when in narrow view -->
+<div ng-class="vm.albumInfoOPEN ? 'album-open' : 'album-closed'" ng-show="!vm.wideViewport">
+	<div class="info">
+		<div class="artist">{{ vm.artist }}</div>
+		<div class="title">{{ vm.title }}</div>
+		<div class="price">{{ vm.price }}</div>
+		<a class="url" href="{{ vm.url }}">view on iTunes</a>
+	</div>
+</div>
+
 <div class="collection" ng-repeat="alb in vm.albums">
 
-	<div class="albumcover" ng-show="!vm.wideViewport">
+	<!-- default view (narrow) -->
+	<div class="albumcover" ng-click="vm.toggleAlbumInfo($index + 1)" ng-show="!vm.wideViewport">
 		<img ng-src="{{ alb['im:image'][0]['label'] }}" alt="{{ alb['im:name']['label'] }}" /> 
 	</div>
 
-	<!-- wide viewport -->
+	<!-- wide view -->
 	<div ng-show="vm.wideViewport" class="flip-container" ontouchstart="this.classList.toggle('hover');">
 		<div class="flipper">
 			<div class="front">
@@ -15,17 +25,14 @@
 			<div class="back" ng-click="vm.goitunes(alb.link.attributes.href)">
 				<!-- back content -->
 				<div class="rating">{{ $index + 1 }}</div>
-				<div class="info">
+				<div id="{{ $index + 1 }}" class="info">
 					<div class="artist">{{ alb['im:artist']['label'] }}</div>
 					<div class="title">{{ alb['im:name']['label'] }}</div>
 					<div class="price">{{ alb['im:price']['label'] }} {{ alb['im:price']['attributes']['currency'] }}</div>
+					<a class="url" href="{{ alb.link.attributes.href }}">view on iTunes</a>
 				</div>
 			</div>
 		</div>
 	</div>
 
-
 </div>
-
-
-

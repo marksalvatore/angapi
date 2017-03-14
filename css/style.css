@@ -1,10 +1,35 @@
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web");
 body {
   background-color: black;
-  font-family: 'Titillium Web', sans-serif; }
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 1.1em; }
 
 .collection {
   display: inline-flex; }
+
+.album-open {
+  padding: 1em;
+  color: white; }
+
+.album-closed {
+  display: none; }
+
+.artist {
+  color: #82bc00; }
+
+.title {
+  line-height: 1.1;
+  font-weight: normal;
+  color: #DAA520; }
+
+.url {
+  display: block;
+  width: 100%;
+  margin: .5em auto 0 auto;
+  text-align: center; }
+  .url:hover {
+    text-decoration: none;
+    color: #aaa; }
 
 @media only screen and (min-width: 510px) {
   /*! css-flip: https://davidwalsh.name/css-flip */
@@ -43,18 +68,9 @@ body {
     transform: rotateY(180deg);
     color: white;
     background-color: #333;
-    padding: 1em;
-    font-size: 1em; }
+    padding: 1em; }
     .back .rating {
       float: right;
       font-size: 3em; }
     .back .info {
-      margin-bottom: 1em; }
-      .back .info .artist {
-        font-size: 1.1em;
-        color: #82bc00; }
-      .back .info .title {
-        font-size: 1.2em;
-        line-height: 1.1;
-        font-weight: normal;
-        color: #DAA520; } }
+      margin-bottom: 1em; } }
