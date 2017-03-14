@@ -29,8 +29,9 @@
 
 		var vm = this;
 
+		// Monitor resizing of browser window
 		vm.wideViewport = false;
-		// monitor user resizing browser window
+		_determineInitialViewportWidth();
 		$(window).resize(function() {
 		  _determineViewportWidth();
 		});
@@ -53,12 +54,15 @@
 			window.location.href = url;
 		};
 	
-		function _determineViewportWidth() {
+		function _determineInitialViewportWidth() {
 			if ( $(window).width() > BREAKPOINT.wide ) {
 				vm.wideViewport = true;
 			} else {
 				vm.wideViewport = false;
 			}
+		}
+		function _determineViewportWidth() {
+			_determineInitialViewportWidth();
 			$scope.$apply();
 		}
 
