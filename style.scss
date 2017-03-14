@@ -1,87 +1,78 @@
 @import url('https://fonts.googleapis.com/css?family=Titillium+Web');
 
+
+// narrow rules are default (mobile-first)
 body {
 	background-color: black;
 	font-family: 'Titillium Web', sans-serif;
 }
-
 .collection {
 	display: inline-flex;
 }
 
 
-// FLIPPER
-/* entire container, keeps perspective */
-.flip-container {
-	perspective: 1000px;
-}
+// wider than 510px (where design breaks down)
+@media only screen and (min-width: 510px) {
+	/*! css-flip: https://davidwalsh.name/css-flip */
+	.flip-container {
+		perspective: 1000px;
+	}
 	/* flip the pane when hovered */
 	.flip-container:hover .flipper, .flip-container.hover .flipper {
 		transform: rotateY(180deg);
 	}
 
-.flip-container, .front, .back {
-	width: 170px;
-	height: 170px;
-}
-
-/* flip speed goes here */
-.flipper {
-	transition: 0.6s;
-	transform-style: preserve-3d;
-	position: relative;
-}
-
-/* hide back of pane during swap */
-.front, .back {
-	backface-visibility: hidden;
-	position: absolute;
-	top: 0;
-	left: 0;
-}
-
-/* front pane, placed above back */
-.front {
-	z-index: 2;
-	/* for firefox 31 */
-	transform: rotateY(0deg);
-}
-
-/* back, initially hidden pane */
-.back {
-	transform: rotateY(180deg);
-	color: white;
-	background-color: #333;
-	padding: 1em;
-	font-size: 1em;
-	.rating {
-		float: right;
-		font-size: 3em;
-	}
-	.info {
-		margin-bottom: 1em;
-		.artist {
-			font-size: 1.1em;
-			color: #82bc00;
-		}
-		.title {
-			font-size: 1.2em;
-			line-height: 1.1;
-			font-weight: normal;
-			color: #DAA520;
-		}
-	}
-}
-
-// wider than 
-@media only screen and (min-width: 510px) {
-	body {
-		background-color: pink;
-
-	}
 	.flip-container, .front, .back {
 		width: 170px;
 		height: 170px;
+	}
+
+	/* flip speed goes here */
+	.flipper {
+		transition: 0.6s;
+		transform-style: preserve-3d;
+		position: relative;
+	}
+
+	/* hide back of pane during swap */
+	.front, .back {
+		backface-visibility: hidden;
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+
+	/* front pane, placed above back */
+	.front {
+		z-index: 2;
+		/* for firefox 31 */
+		transform: rotateY(0deg);
+	}
+
+	/* back, initially hidden pane */
+	.back {
+		transform: rotateY(180deg);
+		color: white;
+		background-color: #333;
+		padding: 1em;
+		font-size: 1em;
+		.rating {
+			float: right;
+			font-size: 3em;
+		}
+		.info {
+			margin-bottom: 1em;
+			.artist {
+				font-size: 1.1em;
+				color: #82bc00;
+			}
+			.title {
+				font-size: 1.2em;
+				line-height: 1.1;
+				font-weight: normal;
+				color: #DAA520;
+			}
+		}
 	}
 
 }

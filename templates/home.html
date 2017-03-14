@@ -1,22 +1,30 @@
 <!-- ALBUMS -->
 <div class="collection" ng-repeat="alb in vm.albums">
-	<div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+
+	<div class="albumcover" ng-show="!vm.wideViewport">
+		<img ng-src="{{ alb['im:image'][0]['label'] }}" alt="{{ alb['im:name']['label'] }}" /> 
+	</div>
+
+	<!-- wide viewport -->
+	<div ng-show="vm.wideViewport" class="flip-container" ontouchstart="this.classList.toggle('hover');">
 		<div class="flipper">
 			<div class="front">
 				<!-- front content -->
-				<img ng-show="!vm.wideViewport" ng-src="{{ alb['im:image'][1]['label'] }}" alt="{{ alb['im:name']['label'] }}" /> 
 				<img ng-show="vm.wideViewport" ng-src="{{ alb['im:image'][2]['label'] }}" alt="{{ alb['im:name']['label'] }}" /> 
 			</div>
 			<div class="back" ng-click="vm.goitunes(alb.link.attributes.href)">
-					<div class="rating">{{ $index + 1 }}</div>
-					<div class="info">
-						<div class="artist">{{ alb['im:artist']['label'] }}</div>
-						<div class="title">{{ alb['im:name']['label'] }}</div>
-						<div class="price">{{ alb['im:price']['label'] }} {{ alb['im:price']['attributes']['currency'] }}</div>
-					</div>
+				<!-- back content -->
+				<div class="rating">{{ $index + 1 }}</div>
+				<div class="info">
+					<div class="artist">{{ alb['im:artist']['label'] }}</div>
+					<div class="title">{{ alb['im:name']['label'] }}</div>
+					<div class="price">{{ alb['im:price']['label'] }} {{ alb['im:price']['attributes']['currency'] }}</div>
+				</div>
 			</div>
 		</div>
 	</div>
+
+
 </div>
 
 

@@ -7,6 +7,9 @@
 	app.constant('ENDPOINT', {
 			itunes : 'https://itunes.apple.com/us/rss/topalbums/limit=100/json'
 	});
+	app.constant('BREAKPOINT', {
+			wide : 510
+	});
 
 
 	// Router
@@ -22,10 +25,16 @@
 	}]);
 
 	// MainCtrl
-	app.controller('MainCtrl', ['$rootScope', 'DataSrvc', 'ENDPOINT', function($rootScope, DataSrvc, ENDPOINT) {
+	app.controller('MainCtrl', ['$scope', 'DataSrvc', 'ENDPOINT', 'BREAKPOINT', function($scope, DataSrvc, ENDPOINT, BREAKPOINT) {
 
 		var vm = this;
+
 		vm.wideViewport = false;
+		// monitor user resizing browser window
+		$(window).resize(function() {
+		  _determineViewportWidth();
+		});
+
 
 		// Get Albums
 		DataSrvc.getData(ENDPOINT.itunes)
@@ -44,6 +53,14 @@
 			window.location.href = url;
 		};
 	
+		function _determineViewportWidth() {
+			if ( $(window).width() > BREAKPOINT.wide ) {
+				vm.wideViewport = true;
+			} else {
+				vm.wideViewport = false;
+			}
+			$scope.$apply();
+		}
 
 	}]); // MainCtrl
 
